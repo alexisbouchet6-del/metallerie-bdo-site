@@ -1,0 +1,625 @@
+/* ==========================================================================
+   Métallerie BDO - Feuille de style principale
+   Aucune dependance externe (pas de CDN, pas de Google Fonts) :
+   -> conformite RGPD, pas de requete vers un tiers, chargement plus rapide.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Variables de theme
+   Modifier uniquement ce bloc pour changer l'identite visuelle du site.
+   -------------------------------------------------------------------------- */
+:root {
+  /* Palette */
+  --c-ink:        #15181d;   /* Anthracite : textes et fonds sombres */
+  --c-steel:      #39424e;   /* Acier : textes secondaires */
+  --c-steel-soft: #6b7584;   /* Acier clair : legendes, mentions */
+  --c-brass:      #b08d57;   /* Laiton : couleur d'accent */
+  --c-brass-dark: #8d6f41;   /* Laiton fonce : etats :hover */
+  --c-ivory:      #f6f4f0;   /* Ivoire : fond general */
+  --c-white:      #ffffff;
+  --c-line:       #e0dcd5;   /* Filets et bordures */
+  --c-brand:      #1f4e9c;   /* Bleu du logo B.D.O (reserve au logo) */
+
+  /* Typographie */
+  --font-title: Georgia, "Times New Roman", "Liberation Serif", serif;
+  --font-body:  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* Rythme vertical et largeurs */
+  --wrap:       1180px;   /* Largeur max du contenu */
+  --wrap-text:  740px;    /* Largeur max pour un paragraphe lisible (~75 car.) */
+  --gap:        1.5rem;
+  --section-y:  5rem;     /* Espacement vertical entre sections */
+
+  /* Divers */
+  --radius: 2px;          /* Angles quasi vifs : coherent avec le metal */
+  --shadow: 0 1px 2px rgba(21, 24, 29, .06), 0 8px 24px rgba(21, 24, 29, .08);
+  --transition: .22s ease;
+}
+
+/* --------------------------------------------------------------------------
+   2. Reset et bases
+   -------------------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  /* Compense la hauteur du header sticky lors d'un saut vers une ancre */
+  scroll-padding-top: 90px;
+}
+
+body {
+  margin: 0;
+  background: var(--c-ivory);
+  color: var(--c-steel);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+a { color: var(--c-brass-dark); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--c-ink); }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-title);
+  color: var(--c-ink);
+  line-height: 1.2;
+  font-weight: 400;
+  margin: 0 0 .6em;
+}
+h1 { font-size: clamp(2rem, 5vw, 3.1rem); }
+h2 { font-size: clamp(1.6rem, 3.5vw, 2.3rem); }
+h3 { font-size: 1.25rem; }
+h4 { font-size: 1.05rem; }
+
+p { margin: 0 0 1.1em; }
+p:last-child { margin-bottom: 0; }
+
+ul { margin: 0 0 1.1em; padding-left: 1.2em; }
+li { margin-bottom: .4em; }
+
+/* Accessibilite : focus toujours visible au clavier */
+:focus-visible {
+  outline: 3px solid var(--c-brass);
+  outline-offset: 2px;
+}
+
+/* Lien d'evitement pour les lecteurs d'ecran et la navigation clavier */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--c-ink);
+  color: var(--c-white);
+  padding: .8rem 1.2rem;
+  z-index: 200;
+}
+.skip-link:focus { left: 0; }
+
+/* --------------------------------------------------------------------------
+   3. Utilitaires de mise en page
+   -------------------------------------------------------------------------- */
+.wrap {
+  width: 100%;
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+.section { padding-block: var(--section-y); }
+.section--tight { padding-block: 3rem; }
+.section--dark { background: var(--c-ink); color: #c7ccd4; }
+.section--dark h2, .section--dark h3 { color: var(--c-white); }
+.section--alt { background: var(--c-white); }
+
+.lead { font-size: 1.12rem; color: var(--c-steel); max-width: var(--wrap-text); }
+
+/* Sur-titre en capitales au-dessus des H2 : structure la page sans alourdir */
+.eyebrow {
+  display: block;
+  font-family: var(--font-body);
+  font-size: .78rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--c-brass);
+  margin-bottom: .9rem;
+  font-weight: 600;
+}
+
+.section-head { max-width: var(--wrap-text); margin-bottom: 2.75rem; }
+
+/* Filet decoratif sous les titres de section */
+.rule {
+  width: 56px;
+  height: 2px;
+  background: var(--c-brass);
+  border: 0;
+  margin: 0 0 1.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   4. Boutons
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-block;
+  padding: .85rem 1.8rem;
+  font-family: var(--font-body);
+  font-size: .95rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+.btn--primary { background: var(--c-brass); color: var(--c-ink); }
+.btn--primary:hover { background: var(--c-brass-dark); color: var(--c-white); }
+
+.btn--ghost { background: transparent; color: var(--c-white); border-color: rgba(255,255,255,.45); }
+.btn--ghost:hover { background: var(--c-white); color: var(--c-ink); border-color: var(--c-white); }
+
+.btn--dark { background: var(--c-ink); color: var(--c-white); }
+.btn--dark:hover { background: var(--c-steel); color: var(--c-white); }
+
+.btn-row { display: flex; flex-wrap: wrap; gap: .9rem; margin-top: 1.8rem; }
+
+/* --------------------------------------------------------------------------
+   5. En-tete et navigation
+   -------------------------------------------------------------------------- */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(246, 244, 240, .96);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--c-line);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 76px;
+}
+
+.logo { display: flex; flex-direction: column; text-decoration: none; line-height: 1.1; }
+.logo__name {
+  font-family: var(--font-title);
+  font-size: 1.4rem;
+  color: var(--c-brand);
+  letter-spacing: .01em;
+}
+.logo__sub {
+  font-size: .68rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--c-steel-soft);
+}
+
+.nav { display: flex; align-items: center; gap: 1.6rem; }
+.nav__link {
+  font-size: .95rem;
+  font-weight: 500;
+  color: var(--c-steel);
+  text-decoration: none;
+  padding: .4rem 0;
+  border-bottom: 2px solid transparent;
+  transition: color var(--transition), border-color var(--transition);
+}
+.nav__link:hover { color: var(--c-ink); }
+.nav__link[aria-current="page"] { color: var(--c-ink); border-bottom-color: var(--c-brass); }
+
+.nav__phone {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-weight: 600;
+  color: var(--c-ink);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.nav__phone:hover { color: var(--c-brass-dark); }
+
+/* Bouton burger : masque au-dessus de 900px (voir media queries) */
+.burger {
+  display: none;
+  width: 44px; height: 44px;
+  background: none;
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius);
+  cursor: pointer;
+  padding: 0;
+}
+.burger span {
+  display: block;
+  width: 20px; height: 2px;
+  margin: 4px auto;
+  background: var(--c-ink);
+  transition: transform var(--transition), opacity var(--transition);
+}
+.burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+/* --------------------------------------------------------------------------
+   6. Hero
+   -------------------------------------------------------------------------- */
+.hero {
+  position: relative;
+  background: var(--c-ink);
+  color: #cfd4db;
+  overflow: hidden;
+}
+/* Motif discret de trame metallique genere en CSS (aucune image requise) */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(255,255,255,.04) 0 1px, transparent 1px 48px),
+    repeating-linear-gradient(0deg,  rgba(255,255,255,.04) 0 1px, transparent 1px 48px);
+  pointer-events: none;
+}
+.hero__inner {
+  position: relative;
+  z-index: 1;
+  padding-block: clamp(4rem, 12vw, 8rem);
+  max-width: 760px;
+}
+.hero h1 { color: var(--c-white); }
+.hero p { font-size: 1.15rem; color: #b8bfc9; max-width: 60ch; }
+
+/* En-tete simplifie pour les pages interieures */
+.page-head { background: var(--c-ink); color: #b8bfc9; }
+.page-head__inner { padding-block: clamp(3rem, 8vw, 5rem); max-width: var(--wrap-text); }
+.page-head h1 { color: var(--c-white); margin-bottom: .5rem; }
+
+/* Fil d'Ariane */
+.breadcrumb { font-size: .85rem; color: var(--c-steel-soft); padding-block: 1rem; }
+.breadcrumb a { color: var(--c-steel-soft); }
+.breadcrumb a:hover { color: var(--c-ink); }
+
+/* --------------------------------------------------------------------------
+   7. Bandeau de chiffres cles
+   -------------------------------------------------------------------------- */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 1px;
+  background: var(--c-line);
+  border-block: 1px solid var(--c-line);
+}
+.stat { background: var(--c-white); padding: 2rem 1.5rem; text-align: center; }
+.stat__value {
+  font-family: var(--font-title);
+  font-size: 2.3rem;
+  color: var(--c-ink);
+  display: block;
+  line-height: 1;
+}
+.stat__label {
+  font-size: .82rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--c-steel-soft);
+  margin-top: .6rem;
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   8. Grilles et cartes
+   -------------------------------------------------------------------------- */
+.grid { display: grid; gap: var(--gap); }
+.grid--2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+.grid--3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.grid--4 { grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+
+.card {
+  background: var(--c-white);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius);
+  padding: 2rem 1.75rem;
+  transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+.card:hover { border-color: var(--c-brass); transform: translateY(-3px); box-shadow: var(--shadow); }
+.card h3 { margin-bottom: .5rem; }
+.card p { font-size: .96rem; }
+.card__num {
+  font-family: var(--font-title);
+  font-size: .9rem;
+  color: var(--c-brass);
+  letter-spacing: .1em;
+  display: block;
+  margin-bottom: .8rem;
+}
+
+/* Carte d'ouvrage : utilisee pour enumerer les prestations */
+.work {
+  background: var(--c-white);
+  border: 1px solid var(--c-line);
+  border-left: 3px solid var(--c-brass);
+  border-radius: var(--radius);
+  padding: 1.6rem 1.5rem;
+}
+.work h3 { font-size: 1.1rem; margin-bottom: .45rem; }
+.work p { font-size: .94rem; margin: 0; }
+
+/* Bloc segment de clientele (marches publics / monuments / particuliers) */
+.segment { border-top: 1px solid var(--c-line); padding-top: 2.5rem; margin-top: 3.5rem; }
+.segment:first-of-type { border-top: 0; padding-top: 0; margin-top: 0; }
+
+/* --------------------------------------------------------------------------
+   9. Bloc texte + visuel
+   -------------------------------------------------------------------------- */
+.split {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+.split__media {
+  aspect-ratio: 4 / 3;
+  background: var(--c-steel);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.split__media img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Emplacement d'image en attente des photos du client */
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background:
+    repeating-linear-gradient(45deg, #2b333d 0 10px, #323b46 10px 20px);
+  color: #8d97a4;
+  font-size: .8rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: 1rem;
+  height: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   10. Galerie de realisations
+   -------------------------------------------------------------------------- */
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+.gallery figure { margin: 0; }
+.gallery .frame {
+  aspect-ratio: 3 / 2;
+  border-radius: var(--radius);
+  overflow: hidden;
+  /* Fond hachure visible tant que la photo n'est pas chargee ou absente */
+  background: repeating-linear-gradient(45deg, #2b333d 0 10px, #323b46 10px 20px);
+}
+.gallery figcaption {
+  font-size: .88rem;
+  color: var(--c-steel-soft);
+  padding-top: .6rem;
+}
+.gallery figcaption strong { color: var(--c-ink); font-weight: 600; display: block; }
+
+/* --------------------------------------------------------------------------
+   11. Partenaires
+   -------------------------------------------------------------------------- */
+.partners {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.partners li {
+  background: var(--c-white);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius);
+  padding: .7rem 1.2rem;
+  font-size: .92rem;
+  color: var(--c-steel);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   12. Formulaire de contact
+   -------------------------------------------------------------------------- */
+.form { display: grid; gap: 1.2rem; max-width: 620px; }
+.field { display: grid; gap: .4rem; }
+.field label { font-size: .9rem; font-weight: 600; color: var(--c-ink); }
+.field .hint { font-size: .82rem; color: var(--c-steel-soft); font-weight: 400; }
+
+.field input,
+.field textarea,
+.field select {
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--c-ink);
+  background: var(--c-white);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius);
+  padding: .75rem .9rem;
+  width: 100%;
+  transition: border-color var(--transition);
+}
+.field input:focus,
+.field textarea:focus,
+.field select:focus { border-color: var(--c-brass); }
+.field textarea { min-height: 170px; resize: vertical; }
+
+.field--check { grid-template-columns: auto 1fr; align-items: start; gap: .7rem; }
+.field--check input { width: auto; margin-top: .35rem; }
+.field--check label { font-weight: 400; font-size: .88rem; color: var(--c-steel); }
+
+/* Champ piege anti-robot : invisible pour l'humain, rempli par les bots */
+.hp {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px; height: 1px;
+  overflow: hidden;
+}
+
+.alert { padding: 1rem 1.2rem; border-radius: var(--radius); border-left: 3px solid; font-size: .95rem; }
+.alert--ok  { background: #eef5ee; border-color: #3f7a43; color: #2b5b2f; }
+.alert--err { background: #fbeeee; border-color: #a33b3b; color: #7d2c2c; }
+
+/* --------------------------------------------------------------------------
+   13. Encart coordonnees
+   -------------------------------------------------------------------------- */
+.contact-box { background: var(--c-white); border: 1px solid var(--c-line); border-radius: var(--radius); padding: 2rem; }
+.contact-list { list-style: none; padding: 0; margin: 0; }
+.contact-list li { margin-bottom: 1.1rem; }
+.contact-list li:last-child { margin-bottom: 0; }
+.contact-list .k {
+  display: block;
+  font-size: .76rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--c-brass);
+  margin-bottom: .2rem;
+}
+.contact-list .v { color: var(--c-ink); font-weight: 500; font-style: normal; }
+.contact-list a { color: var(--c-ink); text-decoration: none; }
+.contact-list a:hover { color: var(--c-brass-dark); text-decoration: underline; }
+
+.map-frame {
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  background: var(--c-line);
+}
+.map-frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+/* --------------------------------------------------------------------------
+   14. Bandeau d'appel a l'action
+   -------------------------------------------------------------------------- */
+.cta { background: var(--c-ink); color: #c7ccd4; text-align: center; }
+.cta__inner { padding-block: 4.5rem; max-width: 620px; margin-inline: auto; }
+.cta h2 { color: var(--c-white); }
+.cta .btn-row { justify-content: center; }
+
+/* --------------------------------------------------------------------------
+   15. Pied de page
+   -------------------------------------------------------------------------- */
+.footer { background: #0f1216; color: #8d97a4; font-size: .92rem; padding-block: 3.5rem 2rem; }
+.footer a { color: #b6bec9; text-decoration: none; }
+.footer a:hover { color: var(--c-white); text-decoration: underline; }
+.footer h4 {
+  color: var(--c-white);
+  font-family: var(--font-body);
+  font-size: .78rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.footer ul { list-style: none; padding: 0; margin: 0; }
+.footer li { margin-bottom: .5rem; }
+.footer__bottom {
+  border-top: 1px solid rgba(255,255,255,.1);
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  font-size: .85rem;
+}
+
+/* --------------------------------------------------------------------------
+   16. Contenu editorial (mentions legales)
+   -------------------------------------------------------------------------- */
+.prose { max-width: var(--wrap-text); }
+.prose h2 { margin-top: 2.5rem; font-size: 1.45rem; }
+.prose h3 { margin-top: 1.8rem; font-size: 1.1rem; }
+.prose dl { margin: 0 0 1.5rem; }
+.prose dt { font-weight: 600; color: var(--c-ink); }
+.prose dd { margin: 0 0 .7rem; }
+
+/* --------------------------------------------------------------------------
+   17. Media queries
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .burger { display: block; }
+
+  /* Menu replie en panneau plein ecran sous le header */
+  .nav {
+    position: fixed;
+    inset: 76px 0 auto 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: var(--c-ivory);
+    border-bottom: 1px solid var(--c-line);
+    padding: 1rem 1.25rem 2rem;
+    transform: translateY(-120%);
+    transition: transform var(--transition);
+    box-shadow: var(--shadow);
+  }
+  .nav[data-open="true"] { transform: translateY(0); }
+  .nav__link { padding: .9rem 0; border-bottom: 1px solid var(--c-line); }
+  .nav__link[aria-current="page"] { border-bottom-color: var(--c-brass); }
+  .nav__phone { padding-top: 1.2rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
+
+/* --------------------------------------------------------------------------
+   18. Impression
+   -------------------------------------------------------------------------- */
+@media print {
+  .header, .footer, .cta, .burger, .btn-row { display: none !important; }
+  body { background: #fff; color: #000; }
+  .hero, .page-head, .section--dark { background: #fff !important; color: #000 !important; }
+  .hero h1, .page-head h1 { color: #000 !important; }
+}
+
+/* --------------------------------------------------------------------------
+   19. Galerie : cadre sans photo (image absente ou non encore deposee)
+   -------------------------------------------------------------------------- */
+.gallery .frame img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+.gallery figure:hover .frame img { transform: scale(1.03); }
+.frame--empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: repeating-linear-gradient(45deg, #2b333d 0 10px, #323b46 10px 20px) !important;
+}
+.frame--empty::after {
+  content: "Photo à venir";
+  color: #8d97a4;
+  font-size: .75rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+/* Lien-carte du sommaire de la page Activites */
+a.work { display: block; text-decoration: none; color: inherit; transition: border-color var(--transition), box-shadow var(--transition); }
+a.work:hover { box-shadow: var(--shadow); color: inherit; }
+
+/* Projet vedette (plusieurs photos) */
+.featured { display: grid; grid-template-columns: 2fr 1fr; gap: 1rem; }
+.featured .frame { aspect-ratio: auto; min-height: 200px; }
+.featured__main { grid-row: span 2; aspect-ratio: 4 / 3 !important; }
+@media (max-width: 700px) {
+  .featured { grid-template-columns: 1fr; }
+  .featured__main { grid-row: auto; }
+  .featured .frame { aspect-ratio: 3 / 2; }
+}
+
+/* --------------------------------------------------------------------------
+   20. Modificateurs divers
+   -------------------------------------------------------------------------- */
+.split--top { align-items: start; }
+.h-sm { font-size: 1.4rem; }
+.hint { font-size: .82rem; color: var(--c-steel-soft); }
+.section-head--spaced { margin-top: 3rem; margin-bottom: 1.5rem; }
+.lead--on-dark { color: #b8bfc9; }
+.updated { margin-top: 2.5rem; }

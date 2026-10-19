@@ -1,0 +1,64 @@
+# ============================================================================
+# Métallerie BDO - configuration Apache (hebergement mutualise OVH / o2switch)
+# ============================================================================
+
+Options -Indexes
+ServerSignature Off
+AddDefaultCharset UTF-8
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # 1. Forcer HTTPS
+  RewriteCond %{HTTPS} off
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^ https://www.metallerie-bdo.fr%{REQUEST_URI} [L,R=301]
+
+  # 2. Forcer le sous-domaine www (une seule URL canonique pour le SEO)
+  RewriteCond %{HTTP_HOST} ^metallerie-bdo\.fr$ [NC]
+  RewriteRule ^ https://www.metallerie-bdo.fr%{REQUEST_URI} [L,R=301]
+
+  # 3. Redirections 301 depuis les URL de l'ancien site Local.fr
+  #    Conserve le referencement acquis et les liens existants.
+  RewriteRule ^travaux-de-metallerie/?$ /activites.html     [L,R=301]
+  RewriteRule ^nos-realisations/?$      /realisations.html  [L,R=301]
+  RewriteRule ^contact/?$               /contact.html       [L,R=301]
+  RewriteRule ^mentions-legales/?$      /mentions-legales.html [L,R=301]
+
+  # 4. Bloquer l'acces web aux fichiers de travail
+  RewriteRule ^(tools|\.git)(/|$) - [F,L]
+  RewriteRule (^|/)(README\.md|\.gitignore|\.editorconfig)$ - [F,L]
+</IfModule>
+
+# --- En-tetes de securite ---------------------------------------------------
+<IfModule mod_headers.c>
+  # HSTS : a activer UNIQUEMENT une fois le certificat HTTPS verifie
+  # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "DENY"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+
+  # CSP stricte : rendue possible par l'absence de style/script inline et de CDN.
+  # Le JSON-LD (type application/ld+json) n'est pas execute et n'est pas bloque.
+  Header always set Content-Security-Policy "default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'"
+</IfModule>
+
+# --- Cache navigateur -------------------------------------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html              "access plus 0 seconds"
+  ExpiresByType text/css               "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType image/webp             "access plus 6 months"
+  ExpiresByType image/jpeg             "access plus 6 months"
+  ExpiresByType image/png              "access plus 6 months"
+  ExpiresByType image/svg+xml          "access plus 6 months"
+</IfModule>
+
+# --- Compression ------------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml application/xml text/plain
+</IfModule>

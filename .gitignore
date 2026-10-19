@@ -1,0 +1,17 @@
+# Systeme
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editeurs
+.vscode/
+.idea/
+*.swp
+
+# Secrets / config locale (ne jamais pousser)
+.env
+config.local.php
+
+# Logs et fichiers temporaires
+*.log
+/tmp/

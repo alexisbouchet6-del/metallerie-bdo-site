@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact et devis — Métallerie BDO, Marcilly-d'Azergues (69)</title>
+<meta name="description" content="Contactez Métallerie BDO pour un devis de métallerie ou de serrurerie : 243 chemin des Ronzières, 69380 Marcilly-d'Azergues. Tél. 04 78 43 01 16.">
+<link rel="canonical" href="https://www.metallerie-bdo.fr/contact.html">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Métallerie BDO">
+<meta property="og:title" content="Contact et devis — Métallerie BDO">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#15181d">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Aller au contenu principal</a>
+
+<header class="header">
+  <div class="wrap header__inner">
+    <a class="logo" href="index.html">
+      <span class="logo__name">Métallerie B.D.O</span>
+      <span class="logo__sub">Baur · Damour · Odin</span>
+    </a>
+    <button class="burger" type="button" data-burger aria-expanded="false" aria-controls="site-nav" aria-label="Ouvrir le menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav" id="site-nav" data-nav data-open="false" aria-label="Navigation principale">
+      <a class="nav__link" href="index.html">Accueil</a>
+      <a class="nav__link" href="activites.html">Nos activités</a>
+      <a class="nav__link" href="realisations.html">Réalisations</a>
+      <a class="nav__link" href="contact.html" aria-current="page">Contact</a>
+      <a class="nav__phone" href="tel:+33478430116">04 78 43 01 16</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="page-head">
+    <div class="wrap page-head__inner">
+      <span class="eyebrow">Contact</span>
+      <h1>Parlons de votre projet</h1>
+      <p>
+        Décrivez-nous l'ouvrage souhaité et le contexte du chantier. Plus la
+        demande est précise (dimensions, photos, délais), plus notre première
+        estimation sera fiable.
+      </p>
+    </div>
+  </section>
+
+  <nav class="wrap breadcrumb" aria-label="Fil d'Ariane">
+    <a href="index.html">Accueil</a> › Contact
+  </nav>
+
+  <section class="section section--tight">
+    <div class="wrap split split--top">
+
+      <!-- ===================== Formulaire ===================== -->
+      <div>
+        <h2>Demande de devis</h2>
+        <hr class="rule">
+
+        <!-- Message de retour, affiche par main.js selon ?envoi=ok|erreur -->
+        <div id="form-status" role="status" aria-live="polite"></div>
+
+        <form class="form" id="devis" action="contact.php" method="post" accept-charset="UTF-8">
+
+          <!-- Champ piege anti-spam : doit rester vide -->
+          <div class="hp" aria-hidden="true">
+            <label for="site_web">Ne pas remplir ce champ</label>
+            <input type="text" id="site_web" name="site_web" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="field">
+            <label for="nom">Nom et prénom *</label>
+            <input type="text" id="nom" name="nom" required maxlength="100" autocomplete="name">
+          </div>
+
+          <div class="field">
+            <label for="societe">Société ou organisme <span class="hint">(facultatif)</span></label>
+            <input type="text" id="societe" name="societe" maxlength="120" autocomplete="organization">
+          </div>
+
+          <div class="field">
+            <label for="email">Adresse e-mail *</label>
+            <input type="email" id="email" name="email" required maxlength="150" autocomplete="email">
+          </div>
+
+          <div class="field">
+            <label for="telephone">Téléphone *</label>
+            <input type="tel" id="telephone" name="telephone" required maxlength="20" autocomplete="tel" pattern="[0-9 +().\-]{10,20}">
+          </div>
+
+          <div class="field">
+            <label for="profil">Vous êtes *</label>
+            <select id="profil" name="profil" required>
+              <option value="">— Choisir —</option>
+              <option>Particulier</option>
+              <option>Professionnel (entreprise, architecte, maître d'œuvre)</option>
+              <option>Collectivité ou organisme public</option>
+              <option>Bailleur social</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="ouvrage">Type d'ouvrage *</label>
+            <select id="ouvrage" name="ouvrage" required>
+              <option value="">— Choisir —</option>
+              <option>Garde-corps / rampe</option>
+              <option>Portail / portillon / clôture</option>
+              <option>Grille de défense</option>
+              <option>Escalier</option>
+              <option>Balcon / passerelle</option>
+              <option>Marquise</option>
+              <option>Verrière / châssis acier</option>
+              <option>Façade / bardage</option>
+              <option>Petite charpente / structure</option>
+              <option>Agencement (pare-douche, mobilier)</option>
+              <option>Restauration de ferronnerie</option>
+              <option>Autre</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="commune">Commune du chantier *</label>
+            <input type="text" id="commune" name="commune" required maxlength="100" autocomplete="address-level2">
+          </div>
+
+          <div class="field">
+            <label for="message">Description du projet *
+              <span class="hint">Dimensions approximatives, matériau souhaité, délai…</span>
+            </label>
+            <textarea id="message" name="message" required minlength="20" maxlength="5000"></textarea>
+          </div>
+
+          <div class="field field--check">
+            <input type="checkbox" id="rgpd" name="rgpd" value="1" required>
+            <label for="rgpd">
+              J'accepte que les informations saisies soient utilisées par
+              Métallerie BDO pour traiter ma demande. Elles sont conservées
+              2 ans après notre dernier échange et ne sont jamais transmises
+              à des tiers. <a href="mentions-legales.html#donnees">En savoir plus</a>. *
+            </label>
+          </div>
+
+          <div>
+            <button class="btn btn--dark" type="submit">Envoyer ma demande</button>
+          </div>
+          <p class="hint">* Champs obligatoires</p>
+        </form>
+      </div>
+
+      <!-- ===================== Coordonnees ===================== -->
+      <aside>
+        <div class="contact-box">
+          <h2 class="h-sm">Métallerie BDO</h2>
+          <hr class="rule">
+          <ul class="contact-list">
+            <li>
+              <span class="k">Adresse de l'atelier</span>
+              <address class="v">243 chemin des Ronzières<br>69380 Marcilly-d'Azergues</address>
+            </li>
+            <li>
+              <span class="k">Téléphone</span>
+              <a class="v" href="tel:+33478430116">04 78 43 01 16</a>
+            </li>
+            <li>
+              <span class="k">E-mail</span>
+              <a class="v" href="mailto:contact@metallerie-bdo.fr">contact@metallerie-bdo.fr</a>
+            </li>
+            <li>
+              <span class="k">Secteur d'intervention</span>
+              <span class="v">Lyon, métropole lyonnaise, Rhône, Beaujolais et Val de Saône</span>
+            </li>
+            <li>
+              <span class="k">Réseaux sociaux</span>
+              <span class="v">
+                <a href="https://www.facebook.com/metallerie69" rel="noopener noreferrer" target="_blank">Facebook</a> ·
+                <a href="https://www.instagram.com/metallerie_b.d.o/" rel="noopener noreferrer" target="_blank">Instagram</a>
+              </span>
+            </li>
+          </ul>
+          <div class="btn-row">
+            <a class="btn btn--primary"
+               href="https://www.google.com/maps/search/?api=1&amp;query=243+Chemin+des+Ronzi%C3%A8res+69380+Marcilly-d%27Azergues"
+               rel="noopener noreferrer" target="_blank">Itinéraire</a>
+            <a class="btn btn--dark" href="tel:+33478430116">Appeler</a>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="grid grid--4">
+      <div>
+        <h4>Métallerie BDO</h4>
+        <p>
+          Métallerie, serrurerie d'art et restauration d'ouvrages métalliques
+          dans le Rhône et la métropole lyonnaise.
+        </p>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="activites.html">Nos activités</a></li>
+          <li><a href="realisations.html">Réalisations</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Coordonnées</h4>
+        <ul>
+          <li>243 chemin des Ronzières<br>69380 Marcilly-d'Azergues</li>
+          <li><a href="tel:+33478430116">04 78 43 01 16</a></li>
+          <li><a href="mailto:contact@metallerie-bdo.fr">contact@metallerie-bdo.fr</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Suivez-nous</h4>
+        <ul>
+          <li><a href="https://www.facebook.com/metallerie69" rel="noopener noreferrer" target="_blank">Facebook</a></li>
+          <li><a href="https://www.instagram.com/metallerie_b.d.o/" rel="noopener noreferrer" target="_blank">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; <span data-year>2026</span> Métallerie BDO — SAS au capital de 52 500 € — RCS Lyon 853 435 667</span>
+      <span><a href="mentions-legales.html">Mentions légales et RGPD</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

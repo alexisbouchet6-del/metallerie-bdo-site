@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /tools/
+Disallow: /contact.php
+
+Sitemap: https://www.metallerie-bdo.fr/sitemap.xml
