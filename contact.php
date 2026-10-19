@@ -134,7 +134,8 @@ $ouvrages = [
     'Garde-corps / rampe', 'Portail / portillon / clôture', 'Grille de défense',
     'Escalier', 'Balcon / passerelle', 'Marquise', 'Verrière / châssis acier',
     'Façade / bardage', 'Petite charpente / structure',
-    'Agencement (pare-douche, mobilier)', 'Restauration de ferronnerie', 'Autre',
+    'Agencement (pare-douche, mobilier)', 'Restauration de ferronnerie',
+    'Dépannage / réparation', 'Autre',
 ];
 
 $errors = [];

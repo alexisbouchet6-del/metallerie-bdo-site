@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="6" fill="#15181d"/>
-  <rect x="6" y="6" width="52" height="52" rx="3" fill="none" stroke="#b08d57" stroke-width="2"/>
-  <text x="32" y="41" font-family="Georgia, serif" font-size="22" fill="#ffffff" text-anchor="middle" letter-spacing="1">BDO</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <rect width="48" height="48" rx="11" fill="#284FA0"/>
+  <rect x="4" y="4" width="40" height="40" rx="8" fill="none" stroke="#fff" stroke-opacity=".35"/>
+  <text x="24" y="29.5" text-anchor="middle" font-family="Montserrat, Arial, sans-serif" font-weight="700" font-size="14" letter-spacing=".6" fill="#fff">BDO</text>
 </svg>
